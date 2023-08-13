@@ -1,0 +1,6 @@
+TODO:
+- create a class List (method to print it)
+- create a class element 
+- get user input
+- analise user input (create, see, tick an elment);
+- how to use packages

@@ -10,14 +10,10 @@ public class toDoList {
     // constructor
     public toDoList(String newList) {
         name = newList;
+        data = new Date();
     }
 
     public void displayList() {
-        System.out.println("name; " + name + " " + data);
-    }
-
-    public static void main(String[] args) {
-        toDoList list = new toDoList("what to do");
-        list.displayList();
+        System.out.println("name: " + name + " time at which it was created: " + data);
     }
 }
