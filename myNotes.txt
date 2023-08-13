@@ -3,4 +3,6 @@ TODO:
 - create a class element 
 - get user input
 - analise user input (create, see, tick an elment);
-- how to use packages
+- how to use packages (organising files)
+- use static, public private
+- how to put all compiled file at the same place
