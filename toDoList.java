@@ -5,15 +5,21 @@ the to do list was created */
 public class toDoList {
 
     String name;    // name of list
-    Date data;      // date
+    Date date;      // date
 
     // constructor
     public toDoList(String newList) {
         name = newList;
-        data = new Date();
+        date = new Date();
     }
 
     public void displayList() {
-        System.out.println("name: " + name + " time at which it was created: " + data);
+        System.out.println("name: " + name + ", time at which it was created: " + date);
     }
+
+    public void copyValue(toDoList other) {
+        this.name = other.name;
+        this.date = other.date;
+    }
+
 }
