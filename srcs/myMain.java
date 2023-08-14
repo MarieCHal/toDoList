@@ -1,5 +1,6 @@
 package srcs;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class myMain {
 
@@ -54,9 +55,14 @@ public class myMain {
             }
             else if (userInput.equals("VIEW LIST")) {
                 displayAllList();
-                System.out.println("Enter an index to view one");
-                int userInputIndex = sc.nextInt();
-                System.out.println("This is the index you typed: " + userInputIndex);
+                try{
+                    System.out.println("Enter an index to view one");
+                    int userInputIndex = sc.nextInt();
+                    System.out.println("This is the index you typed: " + userInputIndex);
+                }
+                catch (InputMismatchException e) {
+                    System.out.println("Invalid input! Please enter a valid integer.");
+                }
                 //while (userInput)
             }
             else if (userInput != null) {
