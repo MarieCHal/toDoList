@@ -55,15 +55,50 @@ public class myMain {
             }
             else if (userInput.equals("VIEW LIST")) {
                 displayAllList();
-                try{
-                    System.out.println("Enter an index to view one");
-                    int userInputIndex = sc.nextInt();
-                    System.out.println("This is the index you typed: " + userInputIndex);
+                userInput = null;
+                System.out.println("Enter an index to view one");
+                while (true) {
+                    try{
+                        int userInputIndex = sc.nextInt();
+                        System.out.println("This is the index you typed: " + userInputIndex);
+                        if (userInputIndex <= numberOfList && userInputIndex > 0) {
+                            toDoLists[userInputIndex - 1].displayList();
+                            break;
+                        }
+                        else {
+                            sc.nextLine();
+                            System.out.println("Invalid index! Please enter a valid integer.");
+                        }
+                    }
+                    catch (InputMismatchException e) {
+                        sc.nextLine();
+                        System.out.println("Invalid input! Please enter a valid integer.");
+                    }
                 }
-                catch (InputMismatchException e) {
-                    System.out.println("Invalid input! Please enter a valid integer.");
+            }
+            else if (userInput.equals("ADD ELEMENT")){
+                while (true) {
+                    try{
+                        int userInputIndex = sc.nextInt();
+                        System.out.println("This is the index you typed: " + userInputIndex);
+                        if (userInputIndex <= numberOfList && userInputIndex > 0) {
+                            System.out.println("Enter the title of the new element");
+                            userInput = sc.nextLine();
+                            element newElement = new element(userInput);
+                            toDoLists[userInputIndex - 1].addElement(newElement);
+                            toDoLists[userInputIndex - 1].displayListWithElements();
+                            break;
+                        }
+                        else {
+                            sc.nextLine();
+                            System.out.println("Invalid index! Please enter a valid integer.");
+                        }
+                    }
+                    catch (InputMismatchException e) {
+                        sc.nextLine();
+                        System.out.println("Invalid input! Please enter a valid integer.");
+                    }
                 }
-                //while (userInput)
             }
             else if (userInput != null) {
                 System.out.println("Please enter a valid command");
