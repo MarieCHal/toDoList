@@ -1,3 +1,4 @@
+package srcs;
 import java.util.Date;
 
 /** first attempt of a class that displays the name and time at which 
@@ -15,13 +16,28 @@ public class toDoList {
         date = new Date();
     }
 
+    // displays the list's name and date
     public void displayList() {
         System.out.println("name: " + name + ", time at which it was created: " + date);
     }
 
+    /** @summary displays the elements of the list */
+    public void displayListWithElements() {
+        for (int i = 0; i < numberOfElement; i++) {
+            this.elements[i].displayElement();
+        }
+    }
+
+    /** @summary deep copy of the list (with its elements) */
     public void copyValue(toDoList other) {
         this.name = other.name;
         this.date = other.date;
+        this.numberOfElement = other.numberOfElement;
+        element newElements[] = new element[numberOfElement];
+        for (int i = 0;  i < numberOfElement; i++) { // number of list -1
+            newElements[i] = new element(null);
+            newElements[i].copyValue(elements[i]);
+        }
     }
 
     /** @summary add a new element to the list */

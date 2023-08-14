@@ -1,3 +1,4 @@
+package srcs;
 import java.util.Scanner;
 
 public class myMain {
@@ -54,7 +55,8 @@ public class myMain {
             else if (userInput.equals("VIEW LIST")) {
                 displayAllList();
                 System.out.println("Enter an index to view one");
-                userInput = sc.nextLine();
+                int userInputIndex = sc.nextInt();
+                System.out.println("This is the index you typed: " + userInputIndex);
                 //while (userInput)
             }
             else if (userInput != null) {
