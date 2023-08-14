@@ -3,6 +3,8 @@ CMD:
     find ./srcs/ -type f -name "*.java" > sources.txt
 - to compile all source file and put it in out
     javac -d ./out/ @sources.txt
+- to run the programm from root of directory 
+    java -classpath out srcs.myMain   
 
 
 TODO:
