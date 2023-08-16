@@ -1,6 +1,7 @@
 # Summary
-This is a small Java project. A to do list program to get familiar with the language.
+This is a small Java project. A console based to do list program to get start learning the language.
 
 # Instructions
-- The user should be able to see all the lists and each element of them, see if the task was done or not, change its state as well as adding new elements and creating new lists.
+- Based on few commands the user should be able to create a list and add new elements to it 
+and each element must be tickable.
 

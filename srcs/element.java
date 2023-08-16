@@ -11,12 +11,12 @@ public class element {
         char squared;   // is done or not, ticked for true 
         if (done == true) {
             squared = '\u221A'; // unicode for square ticked 
+            System.out.println("\u001B[32m" + squared + " " + title + "\u001B[0m");
         }
-        else
-        squared = '\u25A1'; // unicode for square unticked
-        
-        System.out.print(title);
-        System.out.println(" " + squared);
+        else {
+            squared = '\u25A1'; // unicode for square unticked
+            System.out.println("\u001B[31m" + squared + " " + title + "\u001B[0m");
+        }
     }
 
     public void copyValue(element other) {

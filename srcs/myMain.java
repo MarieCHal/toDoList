@@ -5,103 +5,64 @@ import java.util.InputMismatchException;
 public class myMain {
 
     static int numberOfList = 0; // number of object of type toDoList
-    static toDoList toDoLists[];
+    static toDoList toDoList;
 
-    // adds a new list to the list of lists 'toDoLists'
-    public static void addList(toDoList newElement) {
-        toDoList newToDoList[] = new toDoList[numberOfList];
-        for (int i = 0;  i < numberOfList - 1; i++) { // number of list -1
-            newToDoList[i] = new toDoList(null);
-            newToDoList[i].copyValue(toDoLists[i]);
-        }
-        newToDoList[numberOfList - 1] = new toDoList(null);
-        newToDoList[numberOfList - 1].copyValue(newElement);
-        toDoLists = newToDoList;
-    }
 
-    public static void displayAllList() {
-        System.out.println("Here are your lists:");
-        for (int i = 0; i <= numberOfList - 1; i++) {
-            System.out.print((i + 1) + ". ");
-            toDoLists[i].displayList();
-        }
-    }
+
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
+        String userInput;
+
+        //  instructions
         System.out.println("the following command are avaliable: ");
-        System.out.println("NEW LIST - create a new list");
-        System.out.println("VIEW LIST - to view all your lists");
+        System.out.println("ADD ELEMENT - to add a new element tou your list");
+        System.out.println("TICK ELEMENT - to validate one of your task");
         System.out.println("EXIT - to exit the program");
 
-        String userInput;
-        //userInput = userInput.toUpperCase();
+        System.out.println("\u001B[1mTo start enter the title of your todo list - \u001B[0m");
+        userInput = sc.nextLine();
+        toDoList = new toDoList(userInput);
+
         
         while (true) {
+            toDoList.displayListWithElements();
             userInput = sc.nextLine();
             userInput = userInput.toUpperCase();
             if (userInput.equals("EXIT")){
-                System.out.println("See you next time! :)");
+                System.out.println("\n\u001B[1mSee you next time! :)\u001B[0m");
                 break;
             }
-            else if (userInput.equals("NEW LIST")) { // creating a new toDoList
-                System.out.println("Give it a title! - ");
-                userInput = sc.nextLine();
-                numberOfList++;
-                toDoList newList = new toDoList(userInput);
-                addList(newList);
-                displayAllList();
-                userInput = null;
-                System.out.println("Enter a command");
-            }
-            else if (userInput.equals("VIEW LIST")) {
-                displayAllList();
-                userInput = null;
-                System.out.println("Enter an index to view one");
-                while (true) {
-                    try{
-                        int userInputIndex = sc.nextInt();
-                        System.out.println("This is the index you typed: " + userInputIndex);
-                        if (userInputIndex <= numberOfList && userInputIndex > 0) {
-                            toDoLists[userInputIndex - 1].displayList();
-                            break;
-                        }
-                        else {
-                            sc.nextLine();
-                            System.out.println("Invalid index! Please enter a valid integer.");
-                        }
-                    }
-                    catch (InputMismatchException e) {
-                        sc.nextLine();
-                        System.out.println("Invalid input! Please enter a valid integer.");
-                    }
-                }
-            }
             else if (userInput.equals("ADD ELEMENT")){
+                System.out.println("\n\u001B[1mEnter the title of the new element\u001B[0m");
+                userInput = sc.nextLine();
+                System.out.println("This is the user input: " + userInput);
+                element newElement = new element(userInput);
+                toDoList.addElement(newElement);
+                }
+            else if (userInput.equals("TICK ELEMENT")) {
+                System.out.println("\n\u001B[1mChoose an element by entering an index\u001B[0m");
                 while (true) {
                     try{
                         int userInputIndex = sc.nextInt();
+                        sc.nextLine();
                         System.out.println("This is the index you typed: " + userInputIndex);
-                        if (userInputIndex <= numberOfList && userInputIndex > 0) {
-                            System.out.println("Enter the title of the new element");
-                            userInput = sc.nextLine();
-                            element newElement = new element(userInput);
-                            toDoLists[userInputIndex - 1].addElement(newElement);
-                            toDoLists[userInputIndex - 1].displayListWithElements();
+                        if (toDoList.tickElement(userInputIndex) == 0) {
                             break;
                         }
                         else {
-                            sc.nextLine();
-                            System.out.println("Invalid index! Please enter a valid integer.");
+                            //sc.nextLine();
+                            System.out.println("\n\u001B[1mInvalid index! Please enter a valid integer.\u001B[0m");
                         }
                     }
                     catch (InputMismatchException e) {
                         sc.nextLine();
-                        System.out.println("Invalid input! Please enter a valid integer.");
+                        System.out.println("\n\u001B[1mInvalid input! Please enter a valid integer.\u001B[0m");
                     }
                 }
             }
             else if (userInput != null) {
-                System.out.println("Please enter a valid command");
+                System.out.println(userInput + "\n\u001B[1mIsn't a valid command! Please enter a valid command\u001B[0m");
             }
         }
         sc.close();
